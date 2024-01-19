@@ -16,10 +16,6 @@ const Message = (props: MessagePropsType) => {
     }
 
     return <div className={c.message}>{props.message}
-        <div>
-            <textarea ref={newPostElement}></textarea>
-            <button onClick={addPost}>Add message</button>
-        </div>
     </div>
 }
 

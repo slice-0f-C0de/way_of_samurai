@@ -12,12 +12,10 @@ type PropsType = {
 export const MyPosts = (props: PropsType) => {
 
     const addPost = () => {
-        // props.dispatch({type: 'ADD-POST', postText: props.newPostText})
         props.dispatch(addPostActionCreator(props.newPostText))
     }
 
     let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        // props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: e.currentTarget.value})
         props.dispatch(updatePostTextActionCreator(e.currentTarget.value))
     }
 

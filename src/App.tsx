@@ -5,7 +5,7 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
-import {ActionsType, StoreType} from "./Redux/state";
+import {ActionsType, StateType, StoreType} from "./Redux/state";
 import Sidebar from "./components/Sidebar/Sidebar";
 
 type PropsType = {
@@ -33,6 +33,8 @@ const App: React.FC<PropsType> = (props) => {
                                dispatch={props.dispatch}/>}/>
                     <Route path={"/dialogs"}
                            render={() => <Dialogs
+                               store={props.store}
+                               state={state}
                                dialogs={props.store._state.dialogsPage.dialogs}
                                messages={props.store._state.dialogsPage.messages}/>}/>
                     <Route path={"/sidebar"}

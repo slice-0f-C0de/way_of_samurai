@@ -6,7 +6,10 @@ export type StoreType = {
     dispatch: (action: ActionsType) => void
 }
 
-export type ActionsType = AddPostActionType | UpdateNewPostActionType
+export type ActionsType = AddPostActionType
+    | UpdateNewPostActionType
+    | UpdateNewMessageActionType
+    | SendMessageActionType
 
 export type AddPostActionType = {
     type: 'ADD-POST'
@@ -16,6 +19,15 @@ export type AddPostActionType = {
 export type UpdateNewPostActionType = {
     type: 'UPDATE-NEW-POST-TEXT'
     newText: string
+}
+
+export type UpdateNewMessageActionType = {
+    type: 'UPDATE-NEW-MESSAGE-TEXT'
+    text: string
+}
+
+export type SendMessageActionType = {
+    type: 'SEND-MESSAGE'
 }
 
 let store: StoreType = {
@@ -39,7 +51,8 @@ let store: StoreType = {
             messages: [
                 {id: 1, message: "Hi!"},
                 {id: 2, message: "How are you?"},
-            ]
+            ],
+            newMessageText: ""
         }
     },
     getState() {
@@ -63,6 +76,14 @@ let store: StoreType = {
         } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
             this._state.profilePage.newPostText = action.newText
             this._onChange()
+        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+            this._state.dialogsPage.newMessageText = action.text
+            this._onChange()
+        } else if (action.type === 'SEND-MESSAGE') {
+            let text = this._state.dialogsPage.newMessageText
+            this._state.dialogsPage.newMessageText = ''
+            this._state.dialogsPage.messages.push({id: 3, message: text})
+            this._onChange()
         }
     }
 }
@@ -73,6 +94,14 @@ export const addPostActionCreator = (postText: string) => {
 
 export const updatePostTextActionCreator = (newText: string) => {
     return {type: 'UPDATE-NEW-POST-TEXT', newText: newText} as const
+}
+
+export const updateMessageTextActionCreator = (text: string) => {
+    return {type: 'UPDATE-NEW-MESSAGE-TEXT', text: text} as const
+}
+
+export const sendMessageActionCreator = () => {
+    return {type: 'SEND-MESSAGE'} as const
 }
 
 export type StateType = {
@@ -88,6 +117,7 @@ export type ProfilePageType = {
 export type DialogsPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
+    newMessageText: string
 }
 
 export type PostsType = {
