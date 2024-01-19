@@ -67,6 +67,14 @@ let store: StoreType = {
     }
 }
 
+export const addPostActionCreator = (postText: string) => {
+    return {type: 'ADD-POST', postText: postText} as const
+}
+
+export const updatePostTextActionCreator = (newText: string) => {
+    return {type: 'UPDATE-NEW-POST-TEXT', newText: newText} as const
+}
+
 export type StateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
