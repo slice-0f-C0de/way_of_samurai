@@ -1,4 +1,4 @@
-import store from "./Redux/state";
+import store from "./Redux/store";
 import {rerenderEntireTree} from "./render";
 
 store.subscribe(rerenderEntireTree)

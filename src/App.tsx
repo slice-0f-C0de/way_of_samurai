@@ -5,7 +5,7 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
-import {ActionsType, StateType, StoreType} from "./Redux/state";
+import {ActionsType, StoreType} from "./Redux/store";
 import Sidebar from "./components/Sidebar/Sidebar";
 
 type PropsType = {
@@ -17,8 +17,6 @@ type PropsType = {
 const App: React.FC<PropsType> = (props) => {
 
     const state = props.store.getState()
-
-    let message = state.profilePage.posts[0].message
 
     return (
         <BrowserRouter>
