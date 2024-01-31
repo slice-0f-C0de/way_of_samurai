@@ -5,7 +5,6 @@ import App from "./App";
 import {BrowserRouter} from "react-router-dom";
 import {StateType, store} from "./Redux/store";
 
-
 export const rerenderEntireTree = (state: StateType) => {
     ReactDOM.render(
         <BrowserRouter>
