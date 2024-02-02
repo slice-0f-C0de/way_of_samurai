@@ -7,7 +7,7 @@ import {addPostActionCreator, updatePostTextActionCreator} from "../../../Redux/
 type PropsType = {
     store: StoreType
     addPost: () => void
-    onPostChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
+    onPostChange: (text: string) => void
 }
 
 export const MyPosts = (props: PropsType) => {

@@ -2,20 +2,24 @@ import React, {ChangeEvent} from "react";
 import {StoreType} from "../../../Redux/store";
 import {addPostActionCreator, updatePostTextActionCreator} from "../../../Redux/profile-reducer";
 import {MyPosts} from "./MyPosts";
+import {StoreContext} from "../../../StoreContext";
 
-type PropsType = {
-    store: StoreType
-}
+export const MyPostsContainer = () => {
 
-export const MyPostsContainer = (props: PropsType) => {
+    return (
+        <StoreContext.Consumer>
+            {(store) => {
+                const addPost = () => {
+                    store.dispatch(addPostActionCreator(store._state.profilePage.newPostText))
+                }
 
-    const addPost = () => {
-        props.store.dispatch(addPostActionCreator(props.store._state.profilePage.newPostText))
-    }
+                let onPostChange = (text: string) => {
+                    store.dispatch(updatePostTextActionCreator(text))
+                }
 
-    let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.store.dispatch(updatePostTextActionCreator(e.currentTarget.value))
-    }
-
-    return <MyPosts store={props.store} addPost={addPost} onPostChange={onPostChange} />
+                return <MyPosts store={store} addPost={addPost} onPostChange={onPostChange}/>
+            }
+            }
+        </StoreContext.Consumer>
+    )
 }

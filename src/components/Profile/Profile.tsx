@@ -4,14 +4,10 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {StoreType} from "../../Redux/store";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
-type PropsType = {
-    store: StoreType
-}
-
-export const Profile = (props: PropsType) => {
+export const Profile = () => {
 
     return <div className={c.content}>
         <ProfileInfo/>
-        <MyPostsContainer store={props.store} />
+        <MyPostsContainer />
     </div>
 }
