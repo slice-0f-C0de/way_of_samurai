@@ -4,13 +4,13 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import {BrowserRouter} from "react-router-dom";
 import {StateType} from "./Redux/store";
-import {store} from "./Redux/redux-store";
+import {store} from "./Redux/store";
 
 
 export const rerenderEntireTree = (state: StateType) => {
     ReactDOM.render(
         <BrowserRouter>
-            <App store={store} dispatch={store.dispatch.bind(store)} newPostText={state.dialogsPage.newMessageText} />
+            <App store={store} />
         </BrowserRouter>, document.getElementById('root')
     );
 }

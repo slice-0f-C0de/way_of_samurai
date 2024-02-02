@@ -5,18 +5,14 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
-import {ActionsType, StoreType} from "./Redux/store";
+import {StoreType} from "./Redux/store";
 import Sidebar from "./components/Sidebar/Sidebar";
 
 type PropsType = {
     store: StoreType
-    newPostText: string
-    dispatch: (action: ActionsType) => void
 }
 
 const App: React.FC<PropsType> = (props) => {
-
-    const state = props.store.getState()
 
     return (
         <BrowserRouter>
@@ -26,15 +22,12 @@ const App: React.FC<PropsType> = (props) => {
                 <div className={"app-wrapper-content"}>
                     <Route path={"/profile"}
                            render={() => <Profile
-                               newPostText={props.store._state.profilePage.newPostText}
-                               profilePage={props.store._state.profilePage.posts}
-                               dispatch={props.dispatch}/>}/>
+                               store={props.store}
+                           />}/>
                     <Route path={"/dialogs"}
                            render={() => <Dialogs
                                store={props.store}
-                               state={state}
-                               dialogs={props.store._state.dialogsPage.dialogs}
-                               messages={props.store._state.dialogsPage.messages}/>}/>
+                           />}/>
                     <Route path={"/sidebar"}
                            render={() => <Sidebar/>}/>
                 </div>
