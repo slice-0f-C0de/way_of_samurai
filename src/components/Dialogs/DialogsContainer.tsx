@@ -2,6 +2,7 @@ import React from "react";
 import {StoreType} from "../../Redux/store";
 import {sendMessageActionCreator, updateMessageTextActionCreator} from "../../Redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
+import {StoreContext} from "../../StoreContext";
 
 type PropsType = {
     store: StoreType
@@ -9,15 +10,22 @@ type PropsType = {
 
 const DialogsContainer = (props: PropsType) => {
 
-    let SendMessageClick = () => {
-        props.store.dispatch(sendMessageActionCreator());
-    }
+    return (
+        <StoreContext.Consumer>
+            {(store) => {
+                let SendMessageClick = () => {
+                    store.dispatch(sendMessageActionCreator());
+                }
 
-    let ChangeTextMessage = (text: string) => {
-        props.store.dispatch(updateMessageTextActionCreator(text))
-    }
+                let ChangeTextMessage = (text: string) => {
+                    store.dispatch(updateMessageTextActionCreator(text))
+                }
 
-    return <Dialogs store={props.store} SendMessageClick={SendMessageClick} ChangeTextMessage={ChangeTextMessage}/>
+                return <Dialogs store={store} SendMessageClick={SendMessageClick}
+                                ChangeTextMessage={ChangeTextMessage}/>
+            }}
+        </StoreContext.Consumer>
+    )
 }
 
 export default DialogsContainer;
