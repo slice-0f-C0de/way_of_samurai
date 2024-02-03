@@ -14,7 +14,7 @@ const DialogsContainer = (props: PropsType) => {
     }
 
     let ChangeTextMessage = (text: string) => {
-            props.store.dispatch(updateMessageTextActionCreator(text))
+        props.store.dispatch(updateMessageTextActionCreator(text))
     }
 
     return <Dialogs store={props.store} SendMessageClick={SendMessageClick} ChangeTextMessage={ChangeTextMessage}/>
