@@ -7,6 +7,7 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import {StoreType} from "./Redux/store";
 import Sidebar from "./components/Sidebar/Sidebar";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 type PropsType = {
     store: StoreType
@@ -24,9 +25,7 @@ const App: React.FC<PropsType> = (props) => {
                            render={() => <Profile
                            />}/>
                     <Route path={"/dialogs"}
-                           render={() => <Dialogs
-                               store={props.store}
-                           />}/>
+                           render={() => <DialogsContainer store={props.store}/>}/>
                     <Route path={"/sidebar"}
                            render={() => <Sidebar/>}/>
                 </div>
