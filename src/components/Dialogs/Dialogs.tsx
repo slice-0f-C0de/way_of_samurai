@@ -2,19 +2,18 @@ import React, {ChangeEvent} from "react";
 import c from "./Dialogs.module.css"
 import DialogItem from "./DialogItem/DialogsItem";
 import Message from "./Message/Message";
-import {StoreType} from "../../Redux/store";
+import {DialogsPageType} from "../../Redux/store";
 
 type PropsType = {
-    store: StoreType
+    dialogsPage: DialogsPageType
     SendMessageClick: () => void
     ChangeTextMessage: (text: string) => void
 }
 
 const Dialogs = (props: PropsType) => {
 
-    let dialogsElements = props.store._state.dialogsPage.dialogs.map(dialog => <DialogItem id={dialog.id} name={dialog.name}/>)
-    let messagesElements = props.store._state.dialogsPage.messages.map(message => <Message message={message.message}/>)
-    let newMessageText = props.store._state.dialogsPage.newMessageText
+    let dialogsElements = props.dialogsPage.dialogs.map(dialog => <DialogItem id={dialog.id} name={dialog.name}/>)
+    let messagesElements = props.dialogsPage.messages.map(message => <Message message={message.message}/>)
 
     let onSendMessageClick = () => {
         props.SendMessageClick()
@@ -33,7 +32,7 @@ const Dialogs = (props: PropsType) => {
             {messagesElements}
             <div>
                 <div>
-                    <textarea value={newMessageText} onChange={onChangeTextMessage}></textarea>
+                    <textarea value={props.dialogsPage.newMessageText} onChange={onChangeTextMessage}></textarea>
                 </div>
                 <div>
                     <button onClick={onSendMessageClick}>send</button>

@@ -1,16 +1,18 @@
-import React, {ChangeEvent, createElement} from "react";
+import React from "react";
 import Post from "./Post/Post";
 import c from "./MyPosts.module.css"
-import {store, StoreType} from "../../../Redux/store";
+import {PostsType} from "../../../Redux/store";
 
 type PropsType = {
+    posts: PostsType[]
+    newPostText: string
+    updatePostText: (text: string) => void
     addPost: () => void
-    onPostChange: (text: string) => void
 }
 
 export const MyPosts = (props: PropsType) => {
 
-    let postsElements = store._state.profilePage.posts.map(post => <Post message={post.message} likes={post.likes}/>)
+    let postsElements = props.posts.map(post => <Post message={post.message} likes={post.likes}/>)
 
     let newPostElement = React.createRef<HTMLTextAreaElement>()
 
@@ -19,17 +21,14 @@ export const MyPosts = (props: PropsType) => {
     }
 
     const onPostChange = () => {
-        if (newPostElement.current) {
-            let text = newPostElement.current.value
-            props.onPostChange(text)
+            props.updatePostText(newPostElement.current!.value)
         }
-    }
 
     return <div className={c.postsBlock}>
         <h3>My Posts</h3>
         <div>
             <div>
-                <textarea value={store._state.profilePage.newPostText} onChange={onPostChange} ref={newPostElement}/>
+                <textarea value={props.newPostText} onChange={onPostChange} ref={newPostElement}/>
             </div>
             <div>
                 <button onClick={onAddPost}>Add post</button>

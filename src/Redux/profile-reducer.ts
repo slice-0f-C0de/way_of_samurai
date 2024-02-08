@@ -13,7 +13,7 @@ export const profileReducer = (state = initialState, action: ActionsType) => {
         case 'ADD-POST':
             let newPost: PostsType = {
                 id: 5,
-                message: action.postText,
+                message: state.newPostText,
                 likes: 0
             }
             state.posts.push(newPost)
@@ -27,8 +27,8 @@ export const profileReducer = (state = initialState, action: ActionsType) => {
     }
 }
 
-export const addPostActionCreator = (postText: string) => {
-    return {type: 'ADD-POST', postText: postText} as const
+export const addPostActionCreator = () => {
+    return {type: 'ADD-POST'} as const
 }
 
 export const updatePostTextActionCreator = (newText: string) => {

@@ -1,19 +1,13 @@
-import React, {FC} from 'react';
+import React from 'react';
 import './App.css';
 import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
-import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
-import {StoreType} from "./Redux/store";
 import Sidebar from "./components/Sidebar/Sidebar";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
-type PropsType = {
-    store: StoreType
-}
-
-const App: React.FC<PropsType> = (props) => {
+const App: React.FC = () => {
 
     return (
         <BrowserRouter>
@@ -22,10 +16,9 @@ const App: React.FC<PropsType> = (props) => {
                 <Navbar/>
                 <div className={"app-wrapper-content"}>
                     <Route path={"/profile"}
-                           render={() => <Profile
-                           />}/>
+                           render={() => <Profile />}/>
                     <Route path={"/dialogs"}
-                           render={() => <DialogsContainer store={props.store}/>}/>
+                           render={() => <DialogsContainer />}/>
                     <Route path={"/sidebar"}
                            render={() => <Sidebar/>}/>
                 </div>
