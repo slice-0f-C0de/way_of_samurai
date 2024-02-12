@@ -42,15 +42,14 @@ export type MessagesType = {
 }
 
 type UsersPageType = {
-    id: number
-    avatar: string
-    name: string
-    surname: string
-    location: {
-        country: string
-        city: string
-    }
-    status: boolean
+    "name": string,
+    "id": number,
+    "photos": {
+        "small": string,
+        "large": string
+    },
+    "status": boolean,
+    "followed": false
 }
 
 export type ActionsType = AddPostActionType
