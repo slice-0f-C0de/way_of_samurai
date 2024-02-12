@@ -41,10 +41,25 @@ export type MessagesType = {
     message: string
 }
 
+type UsersPageType = {
+    id: number
+    avatar: string
+    name: string
+    surname: string
+    location: {
+        country: string
+        city: string
+    }
+    status: boolean
+}
+
 export type ActionsType = AddPostActionType
     | UpdateNewPostActionType
     | UpdateNewMessageActionType
     | SendMessageActionType
+    | followUserActionType
+    | unfollowUserActionType
+    | setUsersActionType
 
 export type AddPostActionType = {
     type: 'ADD-POST'
@@ -63,6 +78,21 @@ export type UpdateNewMessageActionType = {
 
 export type SendMessageActionType = {
     type: 'SEND-MESSAGE'
+}
+
+export type followUserActionType = {
+    type: 'FOLLOW'
+    userID: number
+}
+
+export type unfollowUserActionType = {
+    type: 'UNFOLLOW'
+    userID: number
+}
+
+export type setUsersActionType = {
+    type: 'SET-USERS'
+    users: UsersPageType[]
 }
 
 export let store: StoreType = {
@@ -100,7 +130,7 @@ export let store: StoreType = {
         this._onChange = callback
     },
     dispatch(action) {
-        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
 
         this._onChange(this._state)
