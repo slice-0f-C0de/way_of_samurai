@@ -2,38 +2,40 @@ import React from 'react';
 import styles from './users.module.css';
 import {UsersPropsType} from "./UsersContainer";
 import axios from "axios";
-import user from './avatar/user.jpg'
+import user from './avatar/user.jpg';
 
-const Users = (props: UsersPropsType) => {
+class Users extends React.Component<UsersPropsType, any> {
 
-    const getUsers = () => {
-        if (props.users.users.length === 0) {
+    getUsers = () => {
+        if (this.props.users.users.length === 0) {
             axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-                    props.setUsers(response.data.items)
+                    this.props.setUsers(response.data.items)
                 }
             )
         }
     }
 
-    return <div>
+    render() {
+        return <div>
 
-        <button onClick={getUsers}>Get Users</button>
+            <button onClick={this.getUsers}>Get Users</button>
 
-        {props.users.users.map(u => <div key={u.id}>
+            {this.props.users.users.map(u => <div key={u.id}>
             <span>
                 <div>{u.name}</div>
                 <div>{u.status}</div>
                 <div>{u.followed}</div>
                 <div><img src={u.photos.small !== null ? u.photos.small : user} className={styles.avatar}/></div>
             </span>
-            <span>
+                <span>
                 <div>
-                    {u.status ? <button onClick={() => props.unfollow(u.id) }>unfollow</button> :
-                        <button onClick={() => props.follow(u.id)}>follow</button>}
+                    {u.status ? <button onClick={() => this.props.unfollow(u.id) }>unfollow</button> :
+                        <button onClick={() => this.props.follow(u.id)}>follow</button>}
                 </div>
             </span>
-        </div>)}
-    </div>
-};
+            </div>)}
+        </div>
+    };
+}
 
 export default Users;

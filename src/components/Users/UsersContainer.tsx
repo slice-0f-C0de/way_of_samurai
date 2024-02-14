@@ -6,7 +6,7 @@ import {
     setUsersActionCreator,
     unfollowUserActionCreator, UsersPageType
 } from "../../Redux/users-reducer";
-import Users from "./Users";
+import UsersClass from "./Users";
 import {AppStateType} from "../../Redux/redux-store";
 
 type MapStateToPropsType = {
@@ -41,6 +41,6 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     }
 }
 
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps) (Users)
+export const UsersContainer = connect(mapStateToProps, mapDispatchToProps) (UsersClass)
 
 export default UsersContainer
