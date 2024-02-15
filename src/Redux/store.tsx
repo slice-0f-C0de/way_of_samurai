@@ -61,6 +61,7 @@ export type ActionsType = AddPostActionType
     | setUsersActionType
     | setCurrentPageActionType
     | setTotalUsersCountActionType
+    | toggleIsFetchingActionType
 
 export type AddPostActionType = {
     type: 'ADD-POST'
@@ -104,6 +105,11 @@ export type setCurrentPageActionType = {
 export type setTotalUsersCountActionType = {
     type: 'SET-TOTAL-USERS-COUNT'
     count: number
+}
+
+export type toggleIsFetchingActionType = {
+    type: 'TOGGLE-IS-FETCHING'
+    isFetching: boolean
 }
 
 export let store: StoreType = {
