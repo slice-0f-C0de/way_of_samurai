@@ -42,7 +42,9 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
                     return u
                 })}
         case 'SET-USERS':
-            return {...state, users: [...state.users, ...action.users]}
+            return {...state, users: action.users}
+        case 'SET-CURRENT-PAGE':
+            return {...state, currentPage: action.currentPage}
         default:
             return state
     }
@@ -58,4 +60,8 @@ export const unfollowUserActionCreator = (userID: number) => {
 
 export const setUsersActionCreator = (users: UsersPageType[]) => {
     return {type: 'SET-USERS', users} as const
+}
+
+export const setCurrentPageActionCreator = (currentPage: number) => {
+    return {type: 'SET-CURRENT-PAGE', currentPage} as const
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import {Dispatch} from "redux";
 import {connect} from "react-redux";
 import {
-    followUserActionCreator, InitialStateType,
+    followUserActionCreator, InitialStateType, setCurrentPageActionCreator,
     setUsersActionCreator,
     unfollowUserActionCreator, UsersPageType
 } from "../../Redux/users-reducer";
@@ -20,6 +20,7 @@ type MapDispatchToPropsType = {
     follow: (userID: number) => void
     unfollow: (userID: number) => void
     setUsers: (users: UsersPageType[]) => void
+    setCurrentPage: (pageNumber: number) => void
 }
 
 export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
@@ -43,6 +44,9 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
         },
         setUsers: (users: UsersPageType[]) => {
             dispatch(setUsersActionCreator(users))
+        },
+        setCurrentPage: (pageNumber: number) => {
+            dispatch(setCurrentPageActionCreator(pageNumber))
         }
     }
 }

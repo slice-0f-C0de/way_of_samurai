@@ -59,6 +59,7 @@ export type ActionsType = AddPostActionType
     | followUserActionType
     | unfollowUserActionType
     | setUsersActionType
+    | setCurrentPageActionType
 
 export type AddPostActionType = {
     type: 'ADD-POST'
@@ -92,6 +93,11 @@ export type unfollowUserActionType = {
 export type setUsersActionType = {
     type: 'SET-USERS'
     users: UsersPageType[]
+}
+
+export type setCurrentPageActionType = {
+    type: 'SET-CURRENT-PAGE'
+    currentPage: number
 }
 
 export let store: StoreType = {
