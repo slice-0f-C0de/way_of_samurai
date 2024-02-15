@@ -10,7 +10,10 @@ import UsersClass from "./Users";
 import {AppStateType} from "../../Redux/redux-store";
 
 type MapStateToPropsType = {
-    users: InitialStateType
+    users: InitialStateType,
+    pageSize: number,
+    usersCount: number
+    currentPage: number
 }
 
 type MapDispatchToPropsType = {
@@ -23,7 +26,10 @@ export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        users: state.usersPage
+        users: state.usersPage,
+        pageSize: state.usersPage.pageSize,
+        usersCount: state.usersPage.usersCount,
+        currentPage: state.usersPage.currentPage
     }
 }
 
