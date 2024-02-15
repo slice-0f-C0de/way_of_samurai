@@ -56,19 +56,19 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
     }
 }
 
-export const followUserActionCreator = (userID: number) => {
+export const followUser = (userID: number) => {
     return {type: 'FOLLOW', userID} as const
 }
 
-export const unfollowUserActionCreator = (userID: number) => {
+export const unfollowUser = (userID: number) => {
     return {type: 'UNFOLLOW', userID} as const
 }
 
-export const setUsersActionCreator = (users: UsersPageType[]) => {
+export const setUsers = (users: UsersPageType[]) => {
     return {type: 'SET-USERS', users} as const
 }
 
-export const setCurrentPageActionCreator = (currentPage: number) => {
+export const setCurrentPage = (currentPage: number) => {
     return {type: 'SET-CURRENT-PAGE', currentPage} as const
 }
 
