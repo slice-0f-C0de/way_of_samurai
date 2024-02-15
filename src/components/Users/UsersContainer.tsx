@@ -76,29 +76,6 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }
 
-let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
-    return {
-        follow: (userID: number) => {
-            dispatch(followUserActionCreator(userID))
-        },
-        unfollow: (userID: number) => {
-            dispatch(unfollowUserActionCreator(userID))
-        },
-        setUsers: (users: UsersPageType[]) => {
-            dispatch(setUsersActionCreator(users))
-        },
-        setCurrentPage: (pageNumber: number) => {
-            dispatch(setCurrentPageActionCreator(pageNumber))
-        },
-        setTotalUsersCount: (totalCount: number) => {
-            dispatch(setTotalUsersCount(totalCount))
-        },
-        toggleIsFetching: (totalCount: boolean) => {
-            dispatch(toggleIsFetching(totalCount))
-        }
-    }
-}
-
 export default connect(mapStateToProps,{
     follow: followUserActionCreator,
     unfollow: unfollowUserActionCreator,
