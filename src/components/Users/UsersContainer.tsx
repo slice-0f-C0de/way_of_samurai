@@ -9,7 +9,7 @@ import {
 import {AppStateType} from "../../Redux/redux-store";
 import Users from "./Users";
 import axios from "axios";
-import preloader from "./loading/preloader.gif"
+import Preloader from "../preloader/preloader";
 
 type MapStateToPropsType = {
     users: InitialStateType,
@@ -52,7 +52,7 @@ class UsersContainer extends React.Component<UsersPropsType, any> {
 
     render() {
         return <>
-            {this.props.isFetching ? <img src={preloader}/> : null}
+            {this.props.isFetching ? <Preloader /> : null}
             <Users totalUsersCount={this.props.totalUsersCount}
                    pageSize={this.props.pageSize}
                    currentPage={this.props.currentPage}
