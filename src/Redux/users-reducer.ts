@@ -14,15 +14,16 @@ export type UsersPageType = {
 export type InitialStateType = {
     users: UsersPageType[],
     pageSize: number,
-    usersCount: number,
+    totalUsersCount: number,
     currentPage: number
 }
 
 let initialState: InitialStateType = {
     users: [],
     pageSize: 5,
-    usersCount: 21,
-    currentPage: 1
+    totalUsersCount: 0,
+    currentPage: 1,
+
 }
 
 export const usersReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
@@ -45,6 +46,8 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
             return {...state, users: action.users}
         case 'SET-CURRENT-PAGE':
             return {...state, currentPage: action.currentPage}
+        case 'SET-TOTAL-USERS-COUNT':
+            return {...state, totalUsersCount: action.count}
         default:
             return state
     }
@@ -64,4 +67,8 @@ export const setUsersActionCreator = (users: UsersPageType[]) => {
 
 export const setCurrentPageActionCreator = (currentPage: number) => {
     return {type: 'SET-CURRENT-PAGE', currentPage} as const
+}
+
+export const setTotalUsersCount = (count: number) => {
+    return {type: 'SET-TOTAL-USERS-COUNT', count} as const
 }

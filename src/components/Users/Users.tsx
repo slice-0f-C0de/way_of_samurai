@@ -8,6 +8,7 @@ class Users extends React.Component<UsersPropsType, any> {
     componentDidMount() {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
                 this.props.setUsers(response.data.items)
+                this.props.setTotalUsersCount(response.data.totalCount)
             }
         )
     }
@@ -21,7 +22,7 @@ class Users extends React.Component<UsersPropsType, any> {
 
     render() {
 
-        let pagesCount = Math.ceil(this.props.usersCount / this.props.pageSize)
+        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
 
         let pages = []
 
@@ -32,7 +33,7 @@ class Users extends React.Component<UsersPropsType, any> {
         return <div>
             <div>{pages.map(p => {
                 return <span className={this.props.currentPage === p ? styles.selectedPage : ''}
-                onClick={(e) => this.onPageChanged(p)}>{p}</span>
+                             onClick={(e) => this.onPageChanged(p)}>{p}</span>
             })}</div>
             {this.props.users.users.map(u => <div key={u.id}>
             <span>
@@ -43,7 +44,7 @@ class Users extends React.Component<UsersPropsType, any> {
             </span>
                 <span>
                 <div>
-                    {u.status ? <button onClick={() => this.props.unfollow(u.id) }>unfollow</button> :
+                    {u.status ? <button onClick={() => this.props.unfollow(u.id)}>unfollow</button> :
                         <button onClick={() => this.props.follow(u.id)}>follow</button>}
                 </div>
             </span>

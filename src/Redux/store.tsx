@@ -60,6 +60,7 @@ export type ActionsType = AddPostActionType
     | unfollowUserActionType
     | setUsersActionType
     | setCurrentPageActionType
+    | setTotalUsersCountActionType
 
 export type AddPostActionType = {
     type: 'ADD-POST'
@@ -98,6 +99,11 @@ export type setUsersActionType = {
 export type setCurrentPageActionType = {
     type: 'SET-CURRENT-PAGE'
     currentPage: number
+}
+
+export type setTotalUsersCountActionType = {
+    type: 'SET-TOTAL-USERS-COUNT'
+    count: number
 }
 
 export let store: StoreType = {
