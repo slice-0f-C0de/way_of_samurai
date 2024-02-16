@@ -40,4 +40,4 @@ const WithUrlDataContainerComponent = withRouter(ProfileContainer)
 
 export default connect(mapStateToProps,{
     setUserProfileActionCreator
-}) (ProfileContainer)
+}) (WithUrlDataContainerComponent)
