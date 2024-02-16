@@ -3,9 +3,19 @@ import c from "./Profile.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
-export const Profile = () => {
+type ProfilePropsType = {
+    profile: {
+        photos: {
+            small: '',
+            large: ''
+        }
+    }
+}
+
+export const Profile = (props: ProfilePropsType) => {
+
     return <div className={c.content}>
-            <ProfileInfo />
+            <ProfileInfo profile={props.profile}/>
         <MyPostsContainer />
     </div>
 }

@@ -1,4 +1,39 @@
-import {ActionsType} from "./store";
+type UsersActionsType = followUserActionType
+    | unfollowUserActionType
+    | setUsersActionType
+    | setCurrentPageActionType
+    | setTotalUsersCountActionType
+    | toggleIsFetchingActionType
+
+export type followUserActionType = {
+    type: 'FOLLOW'
+    userID: number
+}
+
+export type unfollowUserActionType = {
+    type: 'UNFOLLOW'
+    userID: number
+}
+
+export type setUsersActionType = {
+    type: 'SET-USERS'
+    users: UsersPageType[]
+}
+
+export type setCurrentPageActionType = {
+    type: 'SET-CURRENT-PAGE'
+    currentPage: number
+}
+
+export type setTotalUsersCountActionType = {
+    type: 'SET-TOTAL-USERS-COUNT'
+    count: number
+}
+
+export type toggleIsFetchingActionType = {
+    type: 'TOGGLE-IS-FETCHING'
+    isFetching: boolean
+}
 
 export type UsersPageType = {
     "name": string,
@@ -27,7 +62,7 @@ let initialState: InitialStateType = {
     isFetching: true
 }
 
-export const usersReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
+export const usersReducer = (state: InitialStateType = initialState, action: UsersActionsType): InitialStateType => {
     switch (action.type) {
         case 'FOLLOW':
             return {...state, users: state.users.map(u => {

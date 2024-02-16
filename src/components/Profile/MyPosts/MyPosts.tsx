@@ -1,7 +1,12 @@
 import React from "react";
 import Post from "./Post/Post";
 import c from "./MyPosts.module.css"
-import {PostsType} from "../../../Redux/store";
+
+export type PostsType = {
+    id: number
+    message: string
+    likes: number
+}
 
 type PropsType = {
     posts: PostsType[]
