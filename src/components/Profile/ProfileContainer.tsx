@@ -3,9 +3,9 @@ import c from "./Profile.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
-export const Profile = () => {
+export const ProfileContainer = () => {
     return <div className={c.content}>
-        <ProfileInfo />
+            <ProfileInfo />
         <MyPostsContainer />
     </div>
 }

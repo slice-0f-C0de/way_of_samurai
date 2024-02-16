@@ -21,8 +21,8 @@ type MapStateToPropsType = {
 }
 
 type MapDispatchToPropsType = {
-    follow: (userID: number) => void
-    unfollow: (userID: number) => void
+    followUser: (userID: number) => void
+    unfollowUser: (userID: number) => void
     setUsers: (users: UsersPageType[]) => void
     setCurrentPage: (pageNumber: number) => void
     setTotalUsersCount: (totalCount: number) => void
@@ -59,8 +59,8 @@ class UsersContainer extends React.Component<UsersPropsType, any> {
                    currentPage={this.props.currentPage}
                    onPageChanged={this.onPageChanged}
                    users={this.props.users}
-                   follow={this.props.follow}
-                   unfollow={this.props.unfollow}
+                   follow={this.props.followUser}
+                   unfollow={this.props.unfollowUser}
             />
         </>
     }
