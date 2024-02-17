@@ -5,8 +5,8 @@ import Preloader from "../../Preloader/Preloader";
 type ProfileInfoType = {
     profile: {
         photos: {
-            small: '',
-            large: ''
+            small: string,
+            large: string
         }
     }
 }

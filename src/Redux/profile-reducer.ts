@@ -22,8 +22,8 @@ export type InitialStateType = {
     newPostText: string
     profile: {
         photos: {
-            small: any
-            large: any
+            small: string
+            large: string
         }
     }
 }

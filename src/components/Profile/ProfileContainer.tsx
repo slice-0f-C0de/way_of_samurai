@@ -9,8 +9,8 @@ import {withRouter} from "react-router-dom";
 type MapStateToPropsType = {
     profile: {
         photos: {
-            small: '',
-            large: ''
+            small: string,
+            large: string
         }
     }
 }
@@ -18,15 +18,15 @@ type MapStateToPropsType = {
 class ProfileContainer extends React.Component<any, any> {
 
     componentDidMount() {
-        let userId = this.props.match.params.userID
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
-            .then(response => {
-                this.props.setUserProfile(response.data)
-            })
-    }
+        let userId = this.props.match.params.userId
+            axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + (userId || '2'))
+                .then(response => {
+                    this.props.setUserProfileActionCreator(response.data)
+                })
+        }
 
     render() {
-        return <Profile {...this.props} profile={this.props.profile} />
+        return <Profile {...this.props} profile={this.props.profile}/>
     }
 }
 
@@ -38,6 +38,6 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 
 const WithUrlDataContainerComponent = withRouter(ProfileContainer)
 
-export default connect(mapStateToProps,{
+export default connect(mapStateToProps, {
     setUserProfileActionCreator
-}) (WithUrlDataContainerComponent)
+})(WithUrlDataContainerComponent)

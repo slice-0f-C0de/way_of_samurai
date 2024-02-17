@@ -35,7 +35,7 @@ const Users = (props: UsersPropsType) => {
                 <div>{u.status}</div>
                 <div>{u.followed}</div>
                 <div>
-                <NavLink to={'/profile' + u.id}>
+                <NavLink to={'/profile/' + u.id}>
                     <img src={u.photos.small !== null ? u.photos.small : user}
                          className={styles.avatar}/>
                 </NavLink>

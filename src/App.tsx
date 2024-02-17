@@ -8,14 +8,15 @@ import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 
 const App: React.FC = () => {
+
     return (
         <BrowserRouter>
             <div className="app-wrapper">
                 <Header/>
                 <Navbar/>
                 <div className={"app-wrapper-content"}>
-                    <Route path={"/profile/:userId"}
-                           render={() => <ProfileContainer  />}/>
+                    <Route path={"/profile/:userId?"}
+                           render={() => <ProfileContainer />}/>
                     <Route path={"/dialogs"}
                            render={() => <DialogsContainer />}/>
                     <Route path={"/users"}

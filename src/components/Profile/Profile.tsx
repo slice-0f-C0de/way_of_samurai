@@ -6,8 +6,8 @@ import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 type ProfilePropsType = {
     profile: {
         photos: {
-            small: '',
-            large: ''
+            small: string,
+            large: string
         }
     }
 }
