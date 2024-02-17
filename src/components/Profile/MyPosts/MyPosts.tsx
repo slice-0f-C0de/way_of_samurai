@@ -17,7 +17,7 @@ type PropsType = {
 
 export const MyPosts = (props: PropsType) => {
 
-    let postsElements = props.posts.map(post => <Post message={post.message} likes={post.likes}/>)
+    let postsElements = props.posts.map(post => <Post key={post.id} message={post.message} likes={post.likes}/>)
 
     let newPostElement = React.createRef<HTMLTextAreaElement>()
 
