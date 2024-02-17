@@ -1,6 +1,6 @@
-type DataActionsType = setUserDataActionType
+type DataActionsType = setAuthUserDataActionType
 
-export type setUserDataActionType = {
+export type setAuthUserDataActionType = {
     type: 'SET-USER-DATA'
     data: {
         userID: null
@@ -30,6 +30,6 @@ export const authReducer = (state: InitialStateType = initialState, action: Data
     }
 }
 
-export const setUserData = (userId: null, email: null, login: null) => {
+export const setAuthUserData = (userId: null, email: null, login: null) => {
     return {type: 'SET-USER-DATA', data: {userId, email, login}} as const
 }
