@@ -43,7 +43,7 @@ export type UsersPageType = {
         "large": string
     },
     "status": boolean,
-    "followed": false,
+    "followed": boolean,
 }
 
 export type InitialStateType = {
