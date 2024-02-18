@@ -44,7 +44,7 @@ const Users = (props: UsersPropsType) => {
             </span>
                 <span>
                 <div>
-                    {u.status ? <button onClick={() => {
+                    {u.followed ? <button onClick={() => {
 
                             axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
                                 {withCredentials: true, headers: {
