@@ -68,7 +68,7 @@ export const usersReducer = (state: InitialStateType = initialState, action: Use
             return {
                 ...state, users: state.users.map(u => {
                     if (u.id === action.userID) {
-                        return {...u, status: true}
+                        return {...u, followed: true}
                     }
                     return u
                 })
@@ -77,7 +77,7 @@ export const usersReducer = (state: InitialStateType = initialState, action: Use
             return {
                 ...state, users: state.users.map(u => {
                     if (u.id === action.userID) {
-                        return {...u, status: false}
+                        return {...u, followed: false}
                     }
                     return u
                 })
