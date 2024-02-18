@@ -9,9 +9,8 @@ import {
 } from "../../Redux/users-reducer";
 import {AppStateType} from "../../Redux/redux-store";
 import Users from "./Users";
-import axios from "axios";
 import Preloader from "../Preloader/Preloader";
-import {getUsers} from "../../api";
+import {usersAPI} from "../../api";
 
 type MapStateToPropsType = {
     users: InitialStateType
@@ -35,7 +34,7 @@ export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
 class UsersContainer extends React.Component<UsersPropsType, any> {
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        getUsers(this.props.currentPage, this.props.pageSize)
+        usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
             .then(data => {
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(data.items)
@@ -47,7 +46,7 @@ class UsersContainer extends React.Component<UsersPropsType, any> {
     onPageChanged = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber)
         this.props.toggleIsFetching(true)
-        getUsers(pageNumber, this.props.pageSize)
+        usersAPI.getUsers(pageNumber, this.props.pageSize)
             .then(data => {
             this.props.toggleIsFetching(false)
             this.props.setUsers(data.items)

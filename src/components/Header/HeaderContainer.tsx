@@ -3,18 +3,18 @@ import {Header} from "./Header";
 import {connect} from "react-redux";
 import {setAuthUserData} from "../../Redux/auth-reducer";
 import {AppStateType} from "../../Redux/redux-store";
-import {authMe} from "../../api";
+import {usersAPI} from "../../api";
 
 
 type MapStateToPropsType = {
-        login: string
-        isAuth: boolean
+    login: string
+    isAuth: boolean
 }
 
 class HeaderContainer extends React.Component<any, any> {
 
     componentDidMount() {
-        authMe()
+        usersAPI.authMe()
             .then(data => {
                 if (data.resultCode === 0) {
                     let {id, email, login} = data.data
@@ -35,4 +35,4 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
 
 export default connect(mapStateToProps, {
     setAuthUserData
-}) (HeaderContainer)
+})(HeaderContainer)
