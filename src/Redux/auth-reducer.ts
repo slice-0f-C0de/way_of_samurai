@@ -3,23 +3,23 @@ type DataActionsType = setAuthUserDataActionType
 export type setAuthUserDataActionType = {
     type: 'SET-USER-DATA'
     data: {
-        userID: null
-        email: null
-        login: null
+        userID: string
+        email: string
+        login: string
     }
 }
 
 export type InitialStateType = {
     id: null
-    email: null
-    login: null
+    email: string
+    login: string
     isAuth: boolean
 }
 
 let initialState: InitialStateType = {
     id: null,
-    email: null,
-    login: null,
+    email: '',
+    login: '',
     isAuth: false
 }
 
@@ -32,6 +32,6 @@ export const authReducer = (state: InitialStateType = initialState, action: Data
     }
 }
 
-export const setAuthUserData = (userId: null, email: null, login: null) => {
-    return {type: 'SET-USER-DATA', data: {userId, email, login}} as const
+export const setAuthUserData = (id: number, email: string, login: string) => {
+    return {type: 'SET-USER-DATA', data: {id, email, login}} as const
 }

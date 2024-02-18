@@ -43,13 +43,13 @@ export type UsersPageType = {
         "large": string
     },
     "status": boolean,
-    "followed": false
+    "followed": false,
 }
 
 export type InitialStateType = {
-    users: UsersPageType[],
-    pageSize: number,
-    totalUsersCount: number,
+    users: UsersPageType[]
+    pageSize: number
+    totalUsersCount: number
     currentPage: number
     isFetching: boolean
 }
@@ -59,25 +59,29 @@ let initialState: InitialStateType = {
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: true
+    isFetching: true,
 }
 
 export const usersReducer = (state: InitialStateType = initialState, action: UsersActionsType): InitialStateType => {
     switch (action.type) {
         case 'FOLLOW':
-            return {...state, users: state.users.map(u => {
-                if (u.id === action.userID) {
-                    return {...u, status: true}
-                }
-                return u
-            })}
+            return {
+                ...state, users: state.users.map(u => {
+                    if (u.id === action.userID) {
+                        return {...u, status: true}
+                    }
+                    return u
+                })
+            }
         case 'UNFOLLOW':
-            return {...state, users: state.users.map(u => {
+            return {
+                ...state, users: state.users.map(u => {
                     if (u.id === action.userID) {
                         return {...u, status: false}
                     }
                     return u
-                })}
+                })
+            }
         case 'SET-USERS':
             return {...state, users: action.users}
         case 'SET-CURRENT-PAGE':
@@ -91,11 +95,11 @@ export const usersReducer = (state: InitialStateType = initialState, action: Use
     }
 }
 
-export const followUser = (userID: number) => {
+export const follow = (userID: number) => {
     return {type: 'FOLLOW', userID} as const
 }
 
-export const unfollowUser = (userID: number) => {
+export const unfollow = (userID: number) => {
     return {type: 'UNFOLLOW', userID} as const
 }
 
