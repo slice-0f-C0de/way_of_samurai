@@ -35,6 +35,7 @@ type MapDispatchToPropsType = {
 export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 class UsersContainer extends React.Component<UsersPropsType, any> {
+
     componentDidMount() {
         this.props.getUsers(this.props.currentPage, this.props.pageSize)
     }
@@ -74,10 +75,7 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 export default connect(mapStateToProps, {
     follow,
     unfollow,
-    setUsers,
     setCurrentPage,
-    setTotalUsersCount,
-    toggleIsFetching,
     toggleFollowingProgress,
     getUsers: getUsersThunkCreator
 })(UsersContainer)

@@ -10,16 +10,24 @@ const instance = axios.create({
 )
 
 export const usersAPI = {
-    getUsers: (currentPage, pageSize) => {
+    getUsers(currentPage, pageSize) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`)
             .then(response => response.data)
 
     },
 
-    authMe: () => {
+    authMe() {
         return instance.get(`auth/me`)
             .then(response => response.data)
 
+    },
+
+    follow(userId) {
+        return instance.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`)
+    },
+
+    unfollow(userId) {
+        return instance.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`)
     }
 }
 
