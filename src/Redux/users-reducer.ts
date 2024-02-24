@@ -72,7 +72,7 @@ let initialState: InitialStateType = {
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: true,
-    followingInProgress: [],
+    followingInProgress: []
 }
 
 export const usersReducer = (state: InitialStateType = initialState, action: UsersActionsType): InitialStateType => {
@@ -138,7 +138,7 @@ export const toggleFollowingProgress = (isFetching: boolean, userId: number) => 
     return {type: 'TOGGLE-IS-FOLLOWING-PROGRESS', isFetching, userId} as const
 }
 
-export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
+export const getUsers = (currentPage: number, pageSize: number) => {
     return (dispatch: Dispatch) => {
         dispatch(toggleIsFetching(true))
         usersAPI.getUsers(currentPage, pageSize)
