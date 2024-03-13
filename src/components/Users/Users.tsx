@@ -1,10 +1,8 @@
 import React from 'react';
 import styles from "./users.module.css";
 import user from "./avatar/user.jpg";
-import {InitialStateType, unfollow} from "../../Redux/users-reducer";
+import {InitialStateType} from "../../Redux/users-reducer";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
-import {usersAPI} from "../../api";
 
 type UsersPropsType = {
     totalUsersCount: number

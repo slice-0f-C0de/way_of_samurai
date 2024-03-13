@@ -3,8 +3,8 @@ import c from "./Header.module.css";
 import {NavLink} from "react-router-dom";
 
 type HeaderType = {
-        login: string
-        isAuth: boolean
+    login: null
+    isAuth: boolean
 }
 
 export const Header = (props: HeaderType) => {
