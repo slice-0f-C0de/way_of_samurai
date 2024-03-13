@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {authAPI, usersAPI} from "../api";
+import {authAPI} from "../api";
 
 type DataActionsType = setAuthUserDataActionType
 
@@ -13,14 +13,14 @@ export type setAuthUserDataActionType = {
 }
 
 export type InitialStateType = {
-    id: null
+    userId: null
     email: null
     login: null
     isAuth: boolean
 }
 
 let initialState: InitialStateType = {
-    id: null,
+    userId: null,
     email: null,
     login: null,
     isAuth: false,

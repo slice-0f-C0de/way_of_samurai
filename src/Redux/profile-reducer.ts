@@ -84,7 +84,7 @@ export const setUserProfileActionCreator = (profile: any) => {
     return {type: 'SET-USER-PROFILE', profile: profile} as const
 }
 
-export const getUserProfileActionCreator = (userId: string) => (dispatch: Dispatch) => {
+export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
     usersAPI.getProfile(userId).then(response => {
         dispatch(setUserProfileActionCreator(response.data))
     })

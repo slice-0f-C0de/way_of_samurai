@@ -10,19 +10,19 @@ type MapStateToPropsType = {
 }
 
 type MapDispatchToPropsType = {
-    getAuthUserData: any
+    getAuthUserData: () => void
 }
 
 export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
 
-class HeaderContainer extends React.Component<UsersPropsType, any> {
+class HeaderContainer extends React.Component<UsersPropsType, MapDispatchToPropsType> {
 
     componentDidMount() {
        this.props.getAuthUserData()
     }
 
     render() {
-        return <Header isAuth={this.props.isAuth} login={this.props.login} />
+        return <Header {...this.props} />
     }
 }
 
