@@ -7,6 +7,7 @@ import {AppStateType} from "../../Redux/redux-store";
 import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
 import {Redirect} from "react-router-dom";
+import withAuthRedirect from "../hoc/withAuthRedirect";
 
 type MapStateToPropsType = {
     users: InitialStateType
@@ -39,9 +40,7 @@ class UsersContainer extends React.Component<UsersPropsType, any> {
 
     render() {
 
-        if (!this.props.isAuth) {
-            return <Redirect to={'/login'}></Redirect>
-        }
+        let AuthRedirectComponent = withAuthRedirect(UsersContainer)
 
         return <>
             {this.props.isFetching ? <Preloader/> : null}

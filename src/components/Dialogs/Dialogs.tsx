@@ -41,9 +41,9 @@ const Dialogs = (props: DialogsPropsType) => {
         props.ChangeTextMessage(text)
     }
 
-    if (!props.isAuth) {
-        return <Redirect to={'/login'}></Redirect>
-    }
+    // if (!props.isAuth) {
+    //     return <Redirect to={'/login'}></Redirect>
+    // }
 
     return <div className={c.dialogs}>
         <div className={c.dialogsItems}>
