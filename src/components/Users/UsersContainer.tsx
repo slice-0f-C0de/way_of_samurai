@@ -6,8 +6,10 @@ import {
 import {AppStateType} from "../../Redux/redux-store";
 import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
-import {Redirect} from "react-router-dom";
+import {Redirect, withRouter} from "react-router-dom";
 import withAuthRedirect from "../hoc/withAuthRedirect";
+import {compose} from "redux";
+import {getUserProfile} from "../../Redux/profile-reducer";
 
 type MapStateToPropsType = {
     users: InitialStateType
@@ -39,9 +41,6 @@ class UsersContainer extends React.Component<UsersPropsType, any> {
     }
 
     render() {
-
-        let AuthRedirectComponent = withAuthRedirect(UsersContainer)
-
         return <>
             {this.props.isFetching ? <Preloader/> : null}
             <Users totalUsersCount={this.props.totalUsersCount}
@@ -70,10 +69,4 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }
 
-export default connect(mapStateToProps, {
-    follow,
-    unfollow,
-    setCurrentPage,
-    toggleFollowingProgress,
-    getUsers
-})(UsersContainer)
+export default compose<React.ComponentType>(connect(mapStateToProps), withRouter, withAuthRedirect)(UsersContainer)
