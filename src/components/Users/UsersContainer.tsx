@@ -69,4 +69,4 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }
 
-export default compose<React.ComponentType>(connect(mapStateToProps), withRouter, withAuthRedirect)(UsersContainer)
+export default compose<React.ComponentType>(connect(mapStateToProps, {follow, unfollow, toggleFollowingProgress, getUsers}))(UsersContainer)
