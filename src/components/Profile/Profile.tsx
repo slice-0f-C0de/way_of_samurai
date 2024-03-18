@@ -10,12 +10,14 @@ type ProfilePropsType = {
             large: string
         }
     }
+    status: string
+    updateStatus: () => void
 }
 
 export const Profile = (props: ProfilePropsType) => {
 
     return <div className={c.content}>
-            <ProfileInfo profile={props.profile}/>
+            <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
         <MyPostsContainer />
     </div>
 }

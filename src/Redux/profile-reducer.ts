@@ -1,9 +1,10 @@
-import {usersAPI} from "../api";
+import {profileAPI, usersAPI} from "../api";
 import {Dispatch} from "redux";
 
 type ProfileActionsType = AddPostActionType
     | UpdateNewPostActionType
     | SetUserProfileActionType
+    | SetStatusProfileActionType
 
 export type AddPostActionType = {
     type: 'ADD-POST'
@@ -20,6 +21,11 @@ export type SetUserProfileActionType = {
     profile: any
 }
 
+export type SetStatusProfileActionType = {
+    type: 'SET-STATUS'
+    status: ''
+}
+
 export type InitialStateType = {
     posts: PostsType[]
     newPostText: string
@@ -28,7 +34,8 @@ export type InitialStateType = {
             small: string
             large: string
         }
-    }
+    },
+    status: ''
 }
 
 let initialState: InitialStateType = {
@@ -42,7 +49,8 @@ let initialState: InitialStateType = {
             small: 'https://cdn.myportfolio.com/1fabf4ed77f805d754b14c5b7b6b7fb1/925e784a-4b99-48cb-b2fa-30f530542b59.jpg?h=92aa6fa3c0fb06bb1b75121282852821',
             large: ''
         }
-    }
+    },
+    status: ''
 }
 
 type PostsType = {
@@ -67,6 +75,9 @@ export const profileReducer = (state = initialState, action: ProfileActionsType)
         case 'SET-USER-PROFILE': {
             return {...state, profile: action.profile}
         }
+        case 'SET-STATUS': {
+            return {...state, status: action.status}
+        }
         default:
             return state
     }
@@ -80,12 +91,31 @@ export const updatePostTextActionCreator = (newText: string) => {
     return {type: 'UPDATE-NEW-POST-TEXT', newText: newText} as const
 }
 
-export const setUserProfileActionCreator = (profile: any) => {
+export const setUserProfile = (profile: any) => {
     return {type: 'SET-USER-PROFILE', profile: profile} as const
+}
+
+export const setStatus = (status: string) => {
+    return {type: 'SET-STATUS', status: status} as const
 }
 
 export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
     usersAPI.getProfile(userId).then(response => {
-        dispatch(setUserProfileActionCreator(response.data))
+        dispatch(setUserProfile(response.data))
+    })
+}
+
+export const getStatus = (userId: string) => (dispatch: Dispatch) => {
+    debugger
+    profileAPI.getStatus(userId).then(response => {
+        dispatch(setStatus(response.data))
+    })
+}
+
+export const updateStatus = (status: string) => (dispatch: Dispatch) => {
+    profileAPI.updateStatus(status).then(response => {
+        if (response.data.resultData === 0) {
+            dispatch(setStatus(status))
+        }
     })
 }
