@@ -1,11 +1,10 @@
 import React from "react";
-import {sendMessageActionCreator, updateMessageTextActionCreator} from "../../Redux/dialogs-reducer";
+import {sendMessageActionCreator} from "../../Redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {compose, Dispatch} from "redux";
 import {AppStateType} from "../../Redux/redux-store";
 import withAuthRedirect from "../hoc/withAuthRedirect";
-import {getUserProfile} from "../../Redux/profile-reducer";
 import {withRouter} from "react-router-dom";
 
 let mapStateToProps = (state: AppStateType) => {
@@ -17,15 +16,10 @@ let mapStateToProps = (state: AppStateType) => {
 
 let mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        SendMessageClick: () => {
-            dispatch(sendMessageActionCreator());
-        },
-        ChangeTextMessage: (text: string) => {
-            dispatch(updateMessageTextActionCreator(text))
+        sendMessage: (newMessageText: string) => {
+            dispatch(sendMessageActionCreator(newMessageText));
         }
     }
 }
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps) (Dialogs)
-
-export default compose<React.ComponentType>(connect(mapStateToProps, mapDispatchToProps), withRouter, withAuthRedirect)(DialogsContainer)
+export default compose<React.ComponentType>(connect(mapStateToProps, mapDispatchToProps), withRouter, withAuthRedirect)(Dialogs)

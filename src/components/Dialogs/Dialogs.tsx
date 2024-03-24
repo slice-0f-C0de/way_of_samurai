@@ -2,6 +2,7 @@ import React, {ChangeEvent} from "react";
 import c from "./Dialogs.module.css"
 import DialogItem from "./DialogItem/DialogsItem";
 import Message from "./Message/Message";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Redirect} from "react-router-dom";
 
 export type DialogsPageType = {
@@ -22,24 +23,35 @@ export type MessagesType = {
 
 type DialogsPropsType = {
     dialogsPage: DialogsPageType
-    SendMessageClick: () => void
+    sendMessage: (values: any) => void
     ChangeTextMessage: (text: string) => void
     isAuth?: boolean
 }
+
+const AddMessageForm: React.FC<InjectedFormProps> = (props) => {
+
+    return <form onSubmit={props.handleSubmit}>
+        <div>
+            <Field component={'textarea'} name={'newMessageText'} placeholder={'Enter your message'}></Field>
+        </div>
+        <div>
+            <button>send</button>
+        </div>
+    </form>
+}
+
+const AddMessageFormRedux = reduxForm({form: 'dialogAddMessageForm'}) (AddMessageForm)
 
 const Dialogs = (props: DialogsPropsType) => {
 
     let dialogsElements = props.dialogsPage.dialogs.map(dialog => <DialogItem id={dialog.id} name={dialog.name}/>)
     let messagesElements = props.dialogsPage.messages.map(message => <Message message={message.message}/>)
 
-    let onSendMessageClick = () => {
-        props.SendMessageClick()
+    let addNewMessage = (values: any) => {
+        props.sendMessage(values.newMessageText)
     }
 
-    let onChangeTextMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let text = e.target.value
-        props.ChangeTextMessage(text)
-    }
+    if (!props.isAuth) return <Redirect to={"/login"} />
 
     return <div className={c.dialogs}>
         <div className={c.dialogsItems}>
@@ -47,14 +59,7 @@ const Dialogs = (props: DialogsPropsType) => {
         </div>
         <div className={c.messages}>
             {messagesElements}
-            <div>
-                <div>
-                    <textarea value={props.dialogsPage.newMessageText} onChange={onChangeTextMessage}></textarea>
-                </div>
-                <div>
-                    <button onClick={onSendMessageClick}>send</button>
-                </div>
-            </div>
+            <AddMessageFormRedux onSubmit={addNewMessage}/>
         </div>
     </div>
 }

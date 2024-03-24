@@ -8,7 +8,7 @@ type ProfileActionsType = AddPostActionType
 
 export type AddPostActionType = {
     type: 'ADD-POST'
-    postText: string
+    newPostText: string
 }
 
 export type UpdateNewPostActionType = {
@@ -64,7 +64,7 @@ export const profileReducer = (state = initialState, action: ProfileActionsType)
         case 'ADD-POST': {
             let newPost: PostsType = {
                 id: 5,
-                message: state.newPostText,
+                message: action.newPostText,
                 likes: 0
             }
             return {...state, posts: [...state.posts, newPost], newPostText: ''}
@@ -83,8 +83,8 @@ export const profileReducer = (state = initialState, action: ProfileActionsType)
     }
 }
 
-export const addPostActionCreator = () => {
-    return {type: 'ADD-POST'} as const
+export const addPostActionCreator = (newPostText: string) => {
+    return {type: 'ADD-POST', newPostText} as const
 }
 
 export const updatePostTextActionCreator = (newText: string) => {
@@ -106,7 +106,6 @@ export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
 }
 
 export const getStatus = (userId: string) => (dispatch: Dispatch) => {
-    debugger
     profileAPI.getStatus(userId).then(response => {
         dispatch(setStatus(response.data))
     })
